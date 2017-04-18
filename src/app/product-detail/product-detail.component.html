@@ -1,0 +1,44 @@
+<div class="thumbnail">
+  <img src="http://placehold.it/820x230" class="prod-pic">
+  <div class="prod-info">
+    <h3>产品名称：{{product?.name}}</h3>
+    <h4>产品序列号：{{product?.id}}</h4>
+    <h4>产品标准：{{product?.standard}}</h4>
+    <h4>产地：{{product?.producingArea}}</h4>
+    <h4>转基因情况：{{product?.isgm==0?"非转基因":"转基因"}}</h4>
+  </div>
+</div>
+
+<h3>投诉情况</h3>
+<div class="well">
+  <h4 *ngIf="complaints?.length===0">暂无</h4>
+  <hr>
+  <div class="row" *ngFor="let complaint of complaints">
+    <div class="col-md-12">
+      <h4>投诉内容：{{complaint.content}}</h4>
+      <h5>联系电话：{{complaint.phone}}</h5>
+      <hr>
+    </div>
+  </div>
+</div>
+
+
+<form [formGroup]="formModel" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-group" [class.has-error]="formModel.hasError('minlength','content')">
+    <label for="comp_content">投诉内容</label>
+    <textarea formControlName="content" id="comp_content" class="form-control" placeholder="投诉内容" rows="5"></textarea>
+    <span class="help-block" *ngIf="formModel.hasError('minlength','content')">
+      投诉内容不得小于5个字
+    </span>
+  </div>
+
+  <div class="form-group" [class.has-error]="formModel.hasError('minlength','phone')">
+    <label for="comp_phone">电话号码</label>
+    <input formControlName="phone" type="text" id="comp_phone" class="form-control" placeholder="电话号码">
+    <span class="help-block" *ngIf="formModel.hasError('minlength','phone')">
+      电话号码不得小于6位
+    </span>
+  </div>
+  <button class="btn btn-warning btn-primary btn-lg btn-block">投诉</button>
+</form>
+
