@@ -22,23 +22,36 @@
   </div>
 </div>
 
+<button class="btn btn-warning btn-primary btn-lg btn-block" (click)="formShow=!formShow" *ngIf="!formShow">我要投诉</button>
 
-<form [formGroup]="formModel" (ngSubmit)="onSubmit()" novalidate>
-  <div class="form-group" [class.has-error]="formModel.hasError('minlength','content')">
-    <label for="comp_content">投诉内容</label>
-    <textarea formControlName="content" id="comp_content" class="form-control" placeholder="投诉内容" rows="5"></textarea>
-    <span class="help-block" *ngIf="formModel.hasError('minlength','content')">
-      投诉内容不得小于5个字
-    </span>
-  </div>
+<div class="thumbnail" *ngIf="formShow">
+  <form [formGroup]="formModel" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group" [class.has-error]="formModel.hasError('required','content')">
+      <label for="comp_content">投诉内容</label>
+      <textarea formControlName="content" id="comp_content" class="form-control" placeholder="投诉内容" rows="5"></textarea>
+      <!--<span class="help-block" *ngIf="formModel.hasError('required','content')">-->
+      <!--投诉内容不得小于5个字-->
+      <!--</span>-->
+      <hr>
+      <div *ngIf="formModel.hasError('required','content')">
+        <div class="alert alert-danger" role="alert">投诉内容不可为空</div>
+      </div>
+    </div>
 
-  <div class="form-group" [class.has-error]="formModel.hasError('minlength','phone')">
-    <label for="comp_phone">电话号码</label>
-    <input formControlName="phone" type="text" id="comp_phone" class="form-control" placeholder="电话号码">
-    <span class="help-block" *ngIf="formModel.hasError('minlength','phone')">
-      电话号码不得小于6位
-    </span>
-  </div>
-  <button class="btn btn-warning btn-primary btn-lg btn-block">投诉</button>
-</form>
+    <div class="form-group" [class.has-error]="formModel.hasError('required','phone')">
+      <label for="comp_phone">电话号码</label>
+      <input formControlName="phone" type="text" id="comp_phone" class="form-control" placeholder="电话号码">
+      <!--<span class="help-block" *ngIf="formModel.hasError('required','phone')">-->
+      <!--电话号码不得小于6位-->
+      <!--</span>-->
+      <hr>
+      <div *ngIf="formModel.hasError('required','phone')">
+        <div class="alert alert-danger" role="alert">电话号码不可为空</div>
+      </div>
+    </div>
+    <button class="btn btn-warning btn-primary btn-lg btn-block">投诉</button>
+  </form>
+</div>
+
+
 

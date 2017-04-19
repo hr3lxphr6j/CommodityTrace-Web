@@ -13,6 +13,7 @@ import {ProductDetailComponent} from './product-detail/product-detail.component'
 import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductService} from './shared/product.service';
+import { UserComponent } from './user/user.component';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent},
@@ -27,7 +28,8 @@ const routeConfig: Routes = [
     CarouselComponent,
     ProductComponent,
     ProductDetailComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

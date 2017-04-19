@@ -25,7 +25,13 @@ export class ProductService {
    * @returns {Observable<R>}
    */
   getProduct(id: number): Observable<Product> {
-    return this.http.get(this.url + '/' + id).map(res => res.json());
+    return this.http.get(this.url + '/' + id).map(res => {
+      if (res.status < 200 || res.status >= 300) {
+        throw new Error('This request has failed ' + res.status);
+      } else {
+        return res.json();
+      }
+    });
   }
 
   /**
