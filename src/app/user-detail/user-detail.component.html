@@ -1,29 +1,64 @@
-<div>
-  <h2>尊敬的{{userService.user.name}}你好</h2>
-  <h3>您的产品列表</h3>
-  <h3 *ngIf="products==null">您暂无已发布的产品</h3>
-  <table class="table table-hover" *ngIf="products!=null">
-    <thead>
-    <tr>
-      <th>产品ID</th>
-      <th>产品名称</th>
-      <th>产品标准</th>
-      <th>产地</th>
-      <th>转基因情况</th>
-      <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let product of products">
-      <th>{{product.id}}</th>
-      <th>{{product.name}}</th>
-      <th>{{product.standard}}</th>
-      <th>{{product.producingArea}}</th>
-      <th>{{product.isgm==0?"非转基因":"转基因"}}</th>
-      <th>
-        <button class="btn">修改</button>
-      </th>
-    </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="col-sm-3">
+    <div>
+      <img src="http://placehold.it/150x150" class="img-thumbnail">
+    </div>
+  </div>
+  <div class="col-sm-9 thumbnail">
+    <p>尊敬的 {{userService.user.name}} 你好</p>
+    <hr>
+    <p>Email:{{userService.user.email}}</p>
+    <p>Phone:{{userService.user.phone}}</p>
+  </div>
+</div>
+<div class="row" style="padding-top: 10px">
+  <div class="col-sm-12">
+    <h3 *ngIf="products==null">您暂无已发布的产品</h3>
+    <div class="thumbnail" *ngIf="products!=null">
+      <form [formGroup]="formModel" (ngSubmit)="onSubmit()" novalidate>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>产品ID</th>
+            <th>产品名称</th>
+            <th>产品标准</th>
+            <th>产地</th>
+            <th>转基因情况</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let product of products">
+            <th>{{product.id}}</th>
+            <th>{{product.name}}</th>
+            <th>{{product.standard}}</th>
+            <th>{{product.producingArea}}</th>
+            <th>{{product.isgm==0?"非转基因":"转基因"}}</th>
+            <th>
+              <button class="btn btn-danger" (click)="onDelete(product.id)">删除</button>
+            </th>
+          </tr>
+          <tr>
+            <th></th>
+            <th><input formControlName="name" class="form-control" style="width: 70%"></th>
+            <th><input formControlName="standard" class="form-control" style="width: 70%"></th>
+            <th><input formControlName="producingArea" class="form-control" style="width: 70%"></th>
+            <th>
+              <select class="form-control" formControlName="isgm">
+                <option value="-2">请选择</option>
+                <option value="0">非转基因</option>
+                <option value="1">转基因</option>
+              </select>
+            </th>
+            <th>
+              <button type="submit" class="btn btn-success">提交</button>
+            </th>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+
 </div>

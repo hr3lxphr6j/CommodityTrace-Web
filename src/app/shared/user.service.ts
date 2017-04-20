@@ -8,6 +8,7 @@ import {Product} from './product.service';
 export class UserService {
   public user?: User;
   private baseUrl = 'http://127.0.0.1:8080/api/v1/user';
+  private baseUrl2 = 'http://127.0.0.1:8080/api/v1/product';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
@@ -29,6 +30,14 @@ export class UserService {
 
   loadProducts(): Observable<Product[]> {
     return this.http.get(this.baseUrl + '/' + this.user.id + '/product', {headers: this.headers}).map(res => res.json());
+  }
+
+  addProduct(product: Product): Observable<any> {
+    return this.http.post(this.baseUrl2, JSON.stringify(product), {headers: this.headers}).map(res => res.json());
+  }
+
+  delProduct(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl2 + '/' + id, {headers: this.headers}).map(res => res.json());
   }
 }
 export class User {

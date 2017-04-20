@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  productId: number;
+  productId?: number;
 
   constructor(private productService: ProductService,
               private router: Router) {

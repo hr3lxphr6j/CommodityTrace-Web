@@ -14,13 +14,15 @@ import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductService} from './shared/product.service';
 import {UserComponent} from './user/user.component';
-import {UserService} from "./shared/user.service";
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import {UserService} from './shared/user.service';
+import {UserDetailComponent} from './user-detail/user-detail.component';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {LoginGuard} from './guard/login.guard';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent},
   {path: 'product/:prodId', component: ProductDetailComponent},
-  {path: 'user', component: UserDetailComponent}
+  {path: 'user', component: UserDetailComponent, canActivate: [LoginGuard]}
 ];
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ const routeConfig: Routes = [
     RouterModule.forRoot(routeConfig),
     ReactiveFormsModule
   ],
-  providers: [ProductService, UserService],
+  providers: [ProductService, UserService, LoginGuard,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
