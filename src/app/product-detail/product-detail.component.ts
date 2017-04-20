@@ -42,12 +42,14 @@ export class ProductDetailComponent implements OnInit {
 
 
   ngOnInit() {
-    this.routeInfo.params.subscribe((params: Params) => this.productId = params['prodId']);
-    this.productService.getProduct(this.productId).subscribe(
-      product => this.product = product
-    );
-    this.productService.getComplaints(this.productId).subscribe(
-      complaints => this.complaints = complaints
-    );
+    this.routeInfo.params.subscribe((params: Params) => {
+      this.productId = params['prodId'];
+      this.productService.getProduct(this.productId).subscribe(
+        product => this.product = product
+      );
+      this.productService.getComplaints(this.productId).subscribe(
+        complaints => this.complaints = complaints
+      );
+    });
   }
 }

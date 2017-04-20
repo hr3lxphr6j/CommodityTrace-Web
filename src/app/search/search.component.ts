@@ -15,12 +15,11 @@ export class SearchComponent implements OnInit {
   }
 
   onClick() {
-    try {
-      this.productService.getProduct(this.productId).subscribe();
+    this.productService.getProduct(this.productId).subscribe(() => {
       this.router.navigate(['product', this.productId]);
-    } catch (e) {
+    }, () => {
       alert('ID: ' + this.productId + ' 不存在的');
-    }
+    });
   }
 
   ngOnInit() {

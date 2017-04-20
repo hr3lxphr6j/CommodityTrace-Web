@@ -13,11 +13,14 @@ import {ProductDetailComponent} from './product-detail/product-detail.component'
 import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductService} from './shared/product.service';
-import { UserComponent } from './user/user.component';
+import {UserComponent} from './user/user.component';
+import {UserService} from "./shared/user.service";
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'product/:prodId', component: ProductDetailComponent}
+  {path: 'product/:prodId', component: ProductDetailComponent},
+  {path: 'user', component: UserDetailComponent}
 ];
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ const routeConfig: Routes = [
     ProductComponent,
     ProductDetailComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,7 @@ const routeConfig: Routes = [
     RouterModule.forRoot(routeConfig),
     ReactiveFormsModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

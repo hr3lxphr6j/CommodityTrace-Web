@@ -1,0 +1,29 @@
+<div>
+  <h2>尊敬的{{userService.user.name}}你好</h2>
+  <h3>您的产品列表</h3>
+  <h3 *ngIf="products==null">您暂无已发布的产品</h3>
+  <table class="table table-hover" *ngIf="products!=null">
+    <thead>
+    <tr>
+      <th>产品ID</th>
+      <th>产品名称</th>
+      <th>产品标准</th>
+      <th>产地</th>
+      <th>转基因情况</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products">
+      <th>{{product.id}}</th>
+      <th>{{product.name}}</th>
+      <th>{{product.standard}}</th>
+      <th>{{product.producingArea}}</th>
+      <th>{{product.isgm==0?"非转基因":"转基因"}}</th>
+      <th>
+        <button class="btn">修改</button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -25,13 +25,7 @@ export class ProductService {
    * @returns {Observable<R>}
    */
   getProduct(id: number): Observable<Product> {
-    return this.http.get(this.url + '/' + id).map(res => {
-      if (res.status < 200 || res.status >= 300) {
-        throw new Error('This request has failed ' + res.status);
-      } else {
-        return res.json();
-      }
-    });
+    return this.http.get(this.url + '/' + id).map(res => res.json());
   }
 
   /**
@@ -43,6 +37,11 @@ export class ProductService {
     return this.http.get(this.url + '/' + id + '/complaint').map(res => res.json());
   }
 
+  /**
+   * 增加评论
+   * @param id
+   * @param complaint
+   */
   addComplaint(id: number, complaint: any) {
     this.http
       .post(this.url + '/' + id + '/complaint', JSON.stringify(complaint), {headers: this.headers})

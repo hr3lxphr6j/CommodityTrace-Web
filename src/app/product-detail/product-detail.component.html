@@ -29,9 +29,6 @@
     <div class="form-group" [class.has-error]="formModel.hasError('required','content')">
       <label for="comp_content">投诉内容</label>
       <textarea formControlName="content" id="comp_content" class="form-control" placeholder="投诉内容" rows="5"></textarea>
-      <!--<span class="help-block" *ngIf="formModel.hasError('required','content')">-->
-      <!--投诉内容不得小于5个字-->
-      <!--</span>-->
       <hr>
       <div *ngIf="formModel.hasError('required','content')">
         <div class="alert alert-danger" role="alert">投诉内容不可为空</div>
@@ -41,9 +38,6 @@
     <div class="form-group" [class.has-error]="formModel.hasError('required','phone')">
       <label for="comp_phone">电话号码</label>
       <input formControlName="phone" type="text" id="comp_phone" class="form-control" placeholder="电话号码">
-      <!--<span class="help-block" *ngIf="formModel.hasError('required','phone')">-->
-      <!--电话号码不得小于6位-->
-      <!--</span>-->
       <hr>
       <div *ngIf="formModel.hasError('required','phone')">
         <div class="alert alert-danger" role="alert">电话号码不可为空</div>
